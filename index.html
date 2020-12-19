@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仿梦畅闹钟</title>
+    <link href="./css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="./node_modules/art-template/lib/template-web.js"></script>
+
+</head>
+
+<style>
+    body,
+    ul {
+        padding: 0;
+        margin: 0;
+        /*清除padding*/
+        list-style: none;
+        /* 消除默认样式 */
+        font-family: Microsoft YaHei Mono;
+        font-size: 15px;
+        /* 字体属性 */
+        user-select: none;
+        /* 禁止双击选择 */
+    }
+    
+    .main-page {
+        position: absolute;
+        width: 430px;
+        /* height: 290px; */
+        /* 由子元素撑开 */
+        background-color: #A0A7B2;
+        overflow: hidden;
+    }
+    
+    .sticky-head {
+        position: relative;
+        height: 40px;
+    }
+    /* 图标中css设定 */
+    
+    .sticky-head .icon {
+        position: absolute;
+        top: 50%;
+        left: 100px;
+        width: 30px;
+        height: 30px;
+        transform: translate(0, -50%);
+        text-align: center;
+        /* 父元素设置居中 */
+    }
+    
+    .sticky-head #del-checked {
+        left: 150px;
+    }
+    
+    .sticky-head .icon i {
+        position: relative;
+        display: inline-block;
+        width: 30px;
+        line-height: 30px;
+        /* 子元素的高度居中 */
+    }
+    
+    .sticky-head .icon i:hover {
+        background-color: #828893;
+        color: #FFF;
+        border-radius: 5px;
+    }
+    
+    .sticky-head input,
+    .sticky-head span {
+        position: absolute;
+        top: 50%;
+        left: 7px;
+        transform: translate(0, -50%);
+    }
+    
+    .sticky-head input {
+        margin: 0;
+    }
+    
+    .sticky-head span {
+        left: 30px;
+    }
+    
+    .sticky-item {
+        position: relative;
+        height: 250px;
+        background-color: #F3F5F7;
+        overflow: auto;
+    }
+    /* 滚动条设置 */
+    
+    .sticky-item .icon {
+        line-height: 15px;
+        margin-left: 5px;
+    }
+    /* 图标所处位置 */
+    
+    .sticky-item::-webkit-scrollbar {
+        /*滚动条整体样式*/
+        width: 10px;
+        /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+    
+    .sticky-item::-webkit-scrollbar-thumb {
+        /*滚动条里面小方块*/
+        border-radius: 10px;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        background: #F2F2F2;
+    }
+    
+    .sticky-item::-webkit-scrollbar-track {
+        /*滚动条里面轨道*/
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        background: #EEF0F1;
+    }
+    /* 暂时还没有填充进去 */
+    
+    ul li {
+        position: relative;
+        display: flex;
+        line-height: 25px;
+        align-items: center;
+    }
+    
+    ul li .preview {
+        flex: 20;
+        height: 25px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+    
+    ul li input {
+        flex: 1;
+    }
+    
+    .preview:hover {
+        background-color: #D7E1F3;
+    }
+    
+    .operate {
+        position: absolute;
+        height: 25px;
+        width: 90px;
+        top: 0px;
+        right: 0px;
+        /* 垂直居中 */
+        /* background-color: yellow; */
+    }
+    
+    .operate .icon {
+        position: absolute;
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        left: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+        /* background-color: green; */
+        text-align: center;
+        border-radius: 5px;
+    }
+    
+    .operate .icon:nth-child(2) {
+        left: 30px;
+    }
+    
+    .operate .icon:nth-child(3) {
+        left: 60px;
+        /* 這裏不能設置right屬性，因爲父元素沒有該屬性 */
+    }
+    
+    .operate .icon i {
+        line-height: 20px;
+    }
+    
+    .operate .icon:hover {
+        background-color: #F2F2F2;
+    }
+</style>
+
+<body>
+    <div class="main-page">
+        <div class="sticky-head">
+            <input type="checkbox">
+            <span>全选</span>
+            <div class="icon" id="add-item">
+                <i class="fa fa-plus"></i>
+            </div>
+            <div class="icon" id="del-checked">
+                <i class="fa fa-trash"></i>
+            </div>
+        </div>
+        <div class="sticky-item">
+            <ul id="supplyment">
+                <!-- 待填li -->
+            </ul>
+        </div>
+    </div>
+    <script>
+        window.$ = window.jQuery = require("jquery");
+    </script>
+    <script type="text/html" id="tpl">
+        <!-- art-template模板，具体的渲染语法写在了render1.js中(因为需要先promise获取传递得到的数据) -->
+        {{each data}}
+        <li>
+            <input type="checkbox">
+            <div class="preview ">
+                {{repalceHtmlToText($value.content)}}
+                <div class="operate">
+                    <div class="icon">
+                        <i class="fa fa-edit"></i>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-trash"></i>
+                    </div>
+                    <div class="icon">
+                        <% if($value.display) {%>
+                            <i class="fa fa-moon-o"></i>
+                            <%} else { %>
+                                <i class="fa fa-sun-o"></i>
+                                <% }%>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </script>
+
+    <script>
+        //  art-template: 管道化
+        template.defaults.imports.repalceHtmlToText = function repalceHtmlToText(str) {
+            str = str.replace(/<\/?.+?>/g, "");
+            str = str.replace(/&nbsp;/g, "");
+            str = str.substr(0, 20);
+            return str;
+        }
+    </script>
+    <script src="render/render1.js "></script>
+</body>
+
+</html>

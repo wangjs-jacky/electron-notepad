@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<style type="text/css">
+    body {
+        margin: 0;
+        overflow: hidden;
+    }
+    
+    div#div1 {
+        border: 1px solid #000;
+        /* margin: 50px auto 0; */
+        width: 230px;
+        height: 90px;
+    }
+    
+    .banner {
+        height: 28px;
+        color: #000;
+        font: bold 13px/28px 'Microsoft YaHei';
+        text-indent: 10px;
+        line-height: 28px;
+        -webkit-app-region: drag;
+        position: relative;
+        /* background: #FFF url(a.png) 0px -3px no-repeat; */
+    }
+    
+    div #div3 {
+        background-color: rgb(43, 187, 253);
+        height: 20px;
+    }
+    
+    div #div2 {
+        background-color: rgb(43, 187, 253);
+        height: 42px;
+        text-align: center;
+        line-height: 42px;
+        color: white;
+        position: relative;
+    }
+    
+    div #deadline,
+    #deadline1 {
+        font-size: 13px;
+        color: #FFF;
+        margin-left: 12px;
+        margin-top: 0px;
+        line-height: 20px;
+        letter-spacing: 1px
+    }
+    
+    div #deadline1 {
+        font-family: "Times New Roman";
+    }
+    
+    div #div2 .context1,
+    .context2,
+    .context3,
+    .context4 {
+        font-size: 14px;
+        font-weight: bold;
+        position: absolute;
+    }
+    
+    div #div2 .context1 {
+        left: 50px;
+    }
+    
+    div #div2 .context2 {
+        left: 95px;
+    }
+    
+    div #div2 .context3 {
+        left: 150px;
+    }
+    
+    div #div2 .context4 {
+        left: 190px;
+    }
+    
+    div #div2 #time1,
+    #time2,
+    #time3,
+    #time4 {
+        position: absolute;
+        font-size: 18px;
+        width: 23px;
+        text-align: center;
+        font-family: "Times New Roman";
+    }
+    
+    div #div2 #time1 {
+        left: 21px;
+    }
+    
+    div #div2 #time2 {
+        left: 72px;
+    }
+    
+    div #div2 #time3 {
+        left: 126px;
+    }
+    
+    div #div2 #time4 {
+        left: 165px;
+    }
+    
+    .control {
+        display: block;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        height: 28px;
+        font-size: 0px;
+    }
+    
+    .control a {
+        position: relative;
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        top: 50%;
+        transform: translate(0, -50%);
+        margin-right: 3px;
+        display: inline-block;
+    }
+    
+    .control a i {
+        /* fontawesome就是font，需要在上级设置 */
+        position: absolute;
+        /* 这里设置line-height竟然没有用？ */
+        line-height: 18px;
+        /* 居中操作 */
+        left: -6px;
+        /*  字体设置  */
+        font-size: 12px;
+        color: rgb(43, 187, 253);
+        -webkit-app-region: no-drag;
+    }
+    
+    a:hover {
+        background-color: rgb(43, 187, 253);
+        cursor: pointer;
+    }
+    
+    a:hover i {
+        color: #FFF;
+    }
+    
+    audio {
+        display: none;
+    }
+</style>
+
+<body>
+    <div id="div1">
+        <div class="banner">倒计时任务
+            <div class="control">
+                <a><i class="fa fa-pause"></i></a>
+                <a><i class="fa fa-volume-up"></i></a>
+                <a><i class="fa fa-power-off"></i></a>
+            </div>
+        </div>
+        <div id="div2">
+            <span id="time1"></span><span class="context1">天</span> <span id="time2"></span><span class="context2">小时</span><span id="time3"></span><span class="context3">分</span><span id="time4"></span><span class="context4">秒</span>
+        </div>
+        <div id="div3">
+            <span id="deadline">到期时间：</span><span id="deadline1"></span>
+        </div>
+        <audio src="../assets/10HzAlpha.mp3" autoplay loop></audio>
+    </div>
+
+    <script>
+        window.$ = window.jQuery = require("jquery");
+    </script>
+    <script src="./CountDown.js"></script>
+</body>
+
+</html>

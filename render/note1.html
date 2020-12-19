@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<style>
+    html,
+    body {
+        margin: 0px;
+        padding: 0px;
+        height: 100%;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    
+    .content {
+        width: 265px;
+        /* height: 255px; */
+        background-color: #58C6F1;
+        overflow: hidden;
+    }
+    
+    .menu {
+        position: relative;
+        box-sizing: border-box;
+        height: 20px;
+        opacity: 0.2;
+        -webkit-app-region: drag;
+        user-select: none
+    }
+    
+    .content:hover>.menu {
+        opacity: 1;
+    }
+    
+    .edit_region {
+        position: relative;
+        box-sizing: border-box;
+        height: 235px;
+        width: 100%;
+        padding: 10px;
+        border: 0px;
+        font-family: Microsoft YaHei Mono;
+        font-size: 15px;
+        outline: none;
+        resize: none;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: transparent;
+    }
+    
+    a {
+        display: inline-block;
+        position: relative;
+        margin-left: 10px;
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+    
+    i.fa {
+        /* fontawesome就是font，需要在上级设置 */
+        position: absolute;
+        /* 这里设置line-height竟然没有用？ */
+        line-height: 18px;
+        /* 居中操作 */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        /*  字体设置  */
+        font-size: 18px;
+        color: #4A839E;
+        -webkit-app-region: no-drag;
+    }
+    
+    a:hover>i {
+        color: #FFF;
+    }
+    
+    a:hover {
+        background-color: #4F9DBF;
+        cursor: pointer;
+    }
+    /* 定义滚动条样式 */
+    
+    .edit_region::-webkit-scrollbar {
+        /*滚动条整体样式*/
+        width: 10px;
+        /*高宽分别对应横竖滚动条的尺寸*/
+        /* height: 1px; */
+        cursor: pointer;
+    }
+    
+    .edit_region::-webkit-scrollbar-thumb {
+        /*滚动条里面小方块*/
+        border-radius: 10px;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        background: #F2F2F2;
+    }
+    
+    .edit_region::-webkit-scrollbar-track {
+        /*滚动条里面轨道*/
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        /* background: #83D0EE; */
+        opacity: 0.4;
+    }
+    
+    .skin {
+        position: absolute;
+        margin-top: 2px;
+        margin-left: 1px;
+        height: 125px;
+        width: 260px;
+        font-weight: bold;
+        z-index: 20;
+        background-color: #FFF;
+        border: 1px solid #000;
+        display: none;
+    }
+    
+    .skin span {
+        background-color: #DEE0E7;
+        height: 30px;
+        display: block;
+        font-size: 12px;
+        padding-left: 20px;
+        line-height: 30px;
+    }
+    
+    #skin-color {
+        position: relative;
+        padding: 2px;
+    }
+    
+    #skin-color Button {
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+        top: 25px;
+        width: 42px;
+        height: 42px;
+        border: 1px ridge #000;
+        font-size: 8px;
+        padding: 0px;
+        color: #FFF;
+    }
+    
+    #skin-color :nth-child(1) {
+        background-color: #58C6F1;
+        left: 10px;
+    }
+    
+    #skin-color :nth-child(2) {
+        background-color: #FFD06A;
+        left: 59px;
+    }
+    
+    #skin-color :nth-child(3) {
+        background-color: #74F178;
+        left: 108px;
+    }
+    
+    #skin-color :nth-child(4) {
+        background-color: #FF9EBB;
+        left: 157px;
+    }
+    
+    #skin-color :nth-child(5) {
+        background-color: #FFF;
+        color: #000;
+        left: 206px;
+    }
+    /* .active-timer {
+        display: block !important;
+    } */
+    
+    .timer {
+        position: absolute;
+        margin-top: 2px;
+        margin-left: 1px;
+        height: 125px;
+        width: 260px;
+        font-weight: bold;
+        z-index: 20;
+        background-color: #FFF;
+        border: 1px solid #000;
+        display: none;
+    }
+    
+    .active {
+        display: block;
+    }
+    
+    .timer span {
+        background-color: #DEE0E7;
+        height: 30px;
+        display: block;
+        font-size: 12px;
+        padding-left: 20px;
+        line-height: 30px;
+    }
+    
+    #setTime {
+        position: relative;
+        padding: 2px;
+    }
+    
+    #setTime Button {
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+        top: 25px;
+        width: 42px;
+        height: 42px;
+        border: 1px ridge #000;
+        color: #FFF;
+        font-size: 8px;
+        padding: 0px;
+        background-color: gold;
+    }
+    
+    #setTime :nth-child(1) {
+        background-color: #58C6F1;
+        left: 10px;
+    }
+    
+    #setTime :nth-child(2) {
+        background-color: #FFD06A;
+        left: 59px;
+    }
+    
+    #setTime :nth-child(3) {
+        background-color: #74F178;
+        left: 108px;
+    }
+    
+    #setTime :nth-child(4) {
+        background-color: #FF9EBB;
+        left: 157px;
+    }
+    
+    #setTime :nth-child(5) {
+        background-color: #FFF;
+        color: #000;
+        left: 206px;
+    }
+    
+    #whiteBar {
+        width: 220px;
+        height: 2px;
+        background-color: #FFF;
+        margin-left: 50%;
+        transform: translate(-50%, 0);
+    }
+    
+    #inputBox input {
+        width: 100px;
+    }
+</style>
+
+<body>
+    <div class="content">
+        <div class="menu">
+            <!-- <a><i class="fa fa-unlock"></i></a> -->
+            <!-- <a><i class="fa fa-lock"></i></a> -->
+            <a><i class="fa fa-unlock-alt"></i></a>
+            <!-- <a><i class="fa fa-toggle-on"></i></a> -->
+            <a><i class="fa fa-toggle-off"></i></a>
+            <a><i class="fa fa-bell"></i></a>
+            <!-- <a><i class="fa fa-camera"></i></a> -->
+            <!-- <a><i class="fa fa-cog"></i></a> -->
+            <a><i class="fa fa-leaf"></i></a>
+            <a><i class="fa fa-plus"></i></a>
+            <a><i class="fa fa-moon-o"></i></a>
+            <!-- <a><i class="fa fa-sun-o"></i></a> -->
+        </div>
+        <div class="skin">
+            <span>换肤</span>
+            <div id="skin-color">
+                <Button id="skin-blue">BLUE</Button>
+                <Button id="skin-yellow">YELLOW</Button>
+                <Button id="skin-green">GREEN</Button>
+                <Button id="skin-pink">PINK</Button>
+                <Button id="skin-white">WHITE</Button>
+            </div>
+        </div>
+        <div class="timer">
+            <span>定时</span>
+            <div id="setTime">
+                <Button id="min5">5分钟</Button>
+                <Button id="min10">10分钟</Button>
+                <Button id="min20">20分钟</Button>
+                <Button id="min30">30分钟</Button>
+                <Button id="min60">60分钟</Button>
+            </div>
+            <!-- <div id="whiteBar"></div>
+            <div id="inputBox">
+                <input type="text">分钟
+            </div> -->
+        </div>
+
+        <!-- 这里最好不要使用 textarea 获取值，无法获取带html文本(.html()/.text()) -->
+        <!-- <textarea  class="edit_region">""</textarea> -->
+        <div class="edit_region" contenteditable="true">
+            <!-- {{content}} -->
+        </div>
+    </div>
+    <!-- <script src="render/render2.js"></script> -->
+    <script>
+        window.$ = window.jQuery = require("jquery");
+    </script>
+    <script src="./render2.js"></script>
+</body>
+
+</html>

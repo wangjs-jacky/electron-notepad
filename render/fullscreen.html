@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0px;
+    }
+    
+    body:after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: url(../assets/pic2.jpg) no-repeat;
+        background-size: cover;
+        filter: blur(3px);
+        z-index: -1;
+    }
+    
+    button {
+        position: absolute;
+        width: 120px;
+        height: 50px;
+        /* 去除默认的Button样式 */
+        border: none;
+        outline: none;
+        background-color: #FDCE2B;
+        /* 字体设置 */
+        color: #FFF;
+        font-weight: bold;
+        font-size: 20px;
+        margin-right: 2px;
+        left: 50%;
+        top: 70%;
+        transform: translate(-105%, -50%);
+        border-radius: 12px;
+    }
+    
+    button:nth-child(2) {
+        transform: translate(5%, -50%);
+        background-color: #FF6481;
+    }
+</style>
+
+<body>
+    <button id="delay">延长5分钟</button>
+    <button id="close">完成</button>
+</body>
+<script>
+    window.$ = window.jQuery = require("jquery");
+</script>
+<script src="./fullscreenControl.js"></script>
+
+
+</html>
