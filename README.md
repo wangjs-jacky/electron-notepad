@@ -33,6 +33,10 @@
 
   <center><img src="https://wjs-tik.oss-cn-shanghai.aliyuncs.com/img/image-20201219172520256.png" alt="主界面托盘" style="zoom:99%;" /></center>
 
+- **动态图演示：**
+
+  ![](https://wjs-tik.oss-cn-shanghai.aliyuncs.com/img/e25e79bc-5d6e-4232-b0ea-4fa0567851c7.gif)
+
 ## 后续与改进
 
 - 倒计时功能，添加自定义时间
