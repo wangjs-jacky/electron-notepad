@@ -6,9 +6,9 @@
 
 ## 软件界面
 
-<img src="https://wjs-tik.oss-cn-shanghai.aliyuncs.com/img/image-20201219171243342.png" style="zoom:67%;" />
+<center><img src="https://wjs-tik.oss-cn-shanghai.aliyuncs.com/img/image-20201219171243342.png" style="zoom:67%;" /></center>
 
-<img src="https://wjs-tik.oss-cn-shanghai.aliyuncs.com/img/image-20201219171751025.png"  />
+<center><img src="https://wjs-tik.oss-cn-shanghai.aliyuncs.com/img/image-20201219171751025.png"  /></center>
 
 ## 基本功能
 
@@ -18,7 +18,7 @@
 
   倒计时界面默认显示在桌面的右上角。
 
-  <img src="https://wjs-tik.oss-cn-shanghai.aliyuncs.com/img/image-20201219172332192.png" style="zoom: 67%;" />
+  <center><img src="https://wjs-tik.oss-cn-shanghai.aliyuncs.com/img/image-20201219172332192.png" style="zoom: 67%;" /></center>
 
   倒计时面板功能：
 
@@ -31,7 +31,7 @@
   - 托盘处：double-click 打开页面
   - 只可以实现两功能： 打开/退出
 
-  ![主界面托盘](https://wjs-tik.oss-cn-shanghai.aliyuncs.com/img/image-20201219172520256.png)
+  <center><img src="https://wjs-tik.oss-cn-shanghai.aliyuncs.com/img/image-20201219172520256.png" alt="主界面托盘" style="zoom:99%;" /></center>
 
 ## 后续与改进
 
